@@ -94,7 +94,51 @@ const manualMode = document.getElementById('manualMode');
 const autoMode = document.getElementById('autoMode');
 const selectMode = document.getElementById('selectMode');
 
+// 선택 모드 초기화 함수
+async function resetSelectionMode() {
+  try {
+    // 선택 모드가 활성화되어 있는지 확인
+    if (stopSelectionBtn.style.display !== 'none') {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      
+      if (tab && tab.id) {
+        // 선택 모드 종료 및 선택 초기화
+        try {
+          await chrome.tabs.sendMessage(tab.id, { action: 'stopSelection' });
+          await chrome.tabs.sendMessage(tab.id, { action: 'clearSelection' });
+        } catch (e) {
+          // 탭이 닫혔거나 접근할 수 없는 경우 무시
+          console.log('Could not reset selection mode:', e);
+        }
+      }
+    }
+    
+    // UI 초기화
+    selectedText = '';
+    startSelectionBtn.style.display = 'block';
+    clearSelectionBtn.style.display = 'none';
+    stopSelectionBtn.style.display = 'none';
+    submitSelectedBtn.style.display = 'none';
+    submitSelectedBtn.disabled = true;
+    selectionStatus.classList.add('hidden');
+    
+    // storage 초기화
+    await chrome.storage.local.set({ 
+      textSelected: false, 
+      selectedText: '', 
+      selectedCount: 0 
+    });
+  } catch (error) {
+    console.error('Error resetting selection mode:', error);
+  }
+}
+
 function switchMode(activeBtn, activeMode) {
+  // 다른 모드로 전환 시 선택 모드 초기화
+  if (activeMode !== selectMode) {
+    resetSelectionMode();
+  }
+  
   [manualBtn, autoBtn, selectBtn].forEach(btn => btn.classList.remove('active'));
   [manualMode, autoMode, selectMode].forEach(mode => mode.classList.remove('active'));
   activeBtn.classList.add('active');
@@ -957,6 +1001,18 @@ async function initialize() {
   apiKeyInput.addEventListener('change', saveGeminiApiKey);
   apiKeyInput.addEventListener('paste', () => {
     setTimeout(saveGeminiApiKey, 10);
+  });
+  
+  // 창이 닫히거나 숨겨질 때 선택 모드 초기화
+  window.addEventListener('beforeunload', () => {
+    resetSelectionMode();
+  });
+  
+  // visibilitychange 이벤트로 창이 숨겨질 때도 초기화
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      resetSelectionMode();
+    }
   });
 }
 
