@@ -150,9 +150,23 @@ cd plex-mon
 npm install
 ```
 
-### 빌드
+### 배포용 패키지 빌드
 
-Chrome 확장 프로그램이므로 별도의 빌드 과정이 필요 없습니다. 파일을 직접 수정하고 Chrome에서 확장 프로그램을 다시 로드하면 됩니다.
+Chrome Web Store 배포를 위한 zip 패키지를 생성할 수 있습니다.
+
+```bash
+npm run build
+```
+
+빌드 스크립트는 다음 작업을 수행합니다:
+- 기존 빌드 파일 정리
+- 필요한 파일만 `dist/` 디렉토리에 복사
+- `whatsthis.zip` 패키지 파일 생성 (Chrome Web Store 업로드용)
+- 불필요한 파일 제외 (node_modules, .git, 개발 파일 등)
+
+생성된 `whatsthis.zip` 파일을 Chrome Web Store Developer Dashboard에 업로드하면 됩니다.
+
+**상세한 배포 가이드는 [`DEPLOYMENT_GUIDE.md`](./DEPLOYMENT_GUIDE.md)를 참고하세요.**
 
 ## 📄 라이선스
 

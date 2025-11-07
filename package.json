@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "웹 페이지나 텍스트를 LLM으로 3줄 요약하는 크롬 확장 프로그램",
   "scripts": {
-    "server": "node server-example.js"
+    "server": "node server-example.js",
+    "build": "node build.js",
+    "build:sh": "bash build.sh"
   },
   "keywords": [
     "chrome-extension",

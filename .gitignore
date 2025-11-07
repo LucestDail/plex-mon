@@ -12,3 +12,7 @@ Thumbs.db
 # Logs
 *.log
 
+# Build
+dist/
+*.zip
+
