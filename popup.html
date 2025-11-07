@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뭔 내용이지</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title-header">
+      <h1>뭔 내용이지</h1>
+      <span class="subtitle">HelpNow AI Plex</span>
+    </div>
+    
+    <div class="sidepanel-toggle" style="margin-bottom: 15px;">
+      <button id="openSidePanel" class="sidepanel-btn" title="사이드 패널 열기 (페이지 전환 시에도 열려있음)">
+        <span>📌</span>
+        <span>사이드 패널로 열기</span>
+      </button>
+    </div>
+    
+    <div class="mode-selector">
+      <button id="manualBtn" class="mode-btn active">직접 입력</button>
+      <button id="autoBtn" class="mode-btn">자동 인식</button>
+    </div>
+
+    <div id="manualMode" class="mode-content active">
+      <textarea 
+        id="textInput" 
+        placeholder="요약할 텍스트를 입력하세요..."
+        rows="8"
+      ></textarea>
+      <button id="submitManual" class="submit-btn">요약하기</button>
+    </div>
+
+    <div id="autoMode" class="mode-content">
+      <p class="info-text">현재 웹 페이지의 내용을 자동으로 추출하여 요약합니다.</p>
+      <button id="submitAuto" class="submit-btn">자동 요약하기</button>
+    </div>
+
+    <div id="apiKeyConfig" class="api-key-config">
+      <label for="geminiApiKey">Gemini API 키:</label>
+      <div class="api-key-input-wrapper">
+        <input type="password" id="geminiApiKey" placeholder="Gemini API 키를 입력하세요">
+        <button type="button" id="toggleApiKeyVisibility" class="toggle-visibility-btn" title="표시/숨기기">👁️</button>
+      </div>
+      <p class="help-text">API 키는 <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>에서 발급받을 수 있습니다.</p>
+    </div>
+
+    <div id="result" class="result hidden">
+      <div class="result-header">
+        <h2>요약 결과</h2>
+        <button id="closeResult" class="icon-btn" title="닫기">✕</button>
+      </div>
+      <div id="summaryText" class="summary-text" style="max-height: none; overflow: visible;"></div>
+      <div class="result-actions">
+        <button id="saveResult" class="save-btn" title="복사하기">📋 복사하기</button>
+      </div>
+    </div>
+
+    <div id="history" class="history hidden">
+      <div class="history-header">
+        <h2>요약 이력</h2>
+        <button id="closeHistory" class="icon-btn" title="닫기">✕</button>
+      </div>
+      <div id="historyList" class="history-table-container">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>요약 내용</th>
+              <th>작업</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="history-toggle">
+      <button id="showHistory" class="history-icon-btn" title="요약 이력">
+        <span class="history-icon">📚</span>
+        <span class="history-text">요약 이력</span>
+      </button>
+    </div>
+
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p id="loadingText">데이터 확인 중...</p>
+      <p class="loading-subtitle">잠시만 기다려 주세요...</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

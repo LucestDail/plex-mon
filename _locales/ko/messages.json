@@ -1,0 +1,294 @@
+{
+  "extensionName": {
+    "message": "뭔 내용이지",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "웹 페이지나 텍스트를 요약하는 확장 프로그램",
+    "description": "Extension description"
+  },
+  "autoDetect": {
+    "message": "자동 인식",
+    "description": "Auto detect mode button"
+  },
+  "manualSelect": {
+    "message": "직접 선택",
+    "description": "Manual select mode button"
+  },
+  "manualInput": {
+    "message": "직접 입력",
+    "description": "Manual input mode button"
+  },
+  "autoModeDescription": {
+    "message": "현재 웹 페이지의 내용을 자동으로 추출하여 요약합니다.",
+    "description": "Auto mode description"
+  },
+  "selectModeDescription": {
+    "message": "페이지에서 원하는 영역을 클릭하여 선택하세요. 여러 개를 선택할 수 있습니다. 선택 모드를 종료한 후 요약하기 버튼을 클릭하세요.",
+    "description": "Select mode description"
+  },
+  "summarize": {
+    "message": "요약하기",
+    "description": "Summarize button"
+  },
+  "startSelection": {
+    "message": "선택 모드 시작",
+    "description": "Start selection button"
+  },
+  "stopSelection": {
+    "message": "선택 모드 종료",
+    "description": "Stop selection button"
+  },
+  "clear": {
+    "message": "초기화",
+    "description": "Clear button"
+  },
+  "textInputPlaceholder": {
+    "message": "요약할 텍스트를 입력하세요...",
+    "description": "Text input placeholder"
+  },
+  "apiKeyLabel": {
+    "message": "Gemini API 키:",
+    "description": "API key label"
+  },
+  "apiKeyPlaceholder": {
+    "message": "Gemini API 키를 입력하세요",
+    "description": "API key placeholder"
+  },
+  "showHide": {
+    "message": "표시/숨기기",
+    "description": "Show/Hide toggle"
+  },
+  "apiKeyHelp": {
+    "message": "API 키는 $LINK$에서 발급받을 수 있습니다.",
+    "description": "API key help text",
+    "placeholders": {
+      "link": {
+        "content": "$1",
+        "example": "Google AI Studio"
+      }
+    }
+  },
+  "summary": {
+    "message": "요약 결과",
+    "description": "Summary title"
+  },
+  "close": {
+    "message": "닫기",
+    "description": "Close button"
+  },
+  "copy": {
+    "message": "복사하기",
+    "description": "Copy button"
+  },
+  "copied": {
+    "message": "복사 완료",
+    "description": "Copied status"
+  },
+  "history": {
+    "message": "요약 이력",
+    "description": "History title"
+  },
+  "date": {
+    "message": "날짜",
+    "description": "Date column header"
+  },
+  "summaryContent": {
+    "message": "요약 내용",
+    "description": "Summary column header"
+  },
+  "actions": {
+    "message": "작업",
+    "description": "Actions column header"
+  },
+  "noHistory": {
+    "message": "저장된 요약 이력이 없습니다.",
+    "description": "No history message"
+  },
+  "checkingData": {
+    "message": "데이터 확인 중...",
+    "description": "Loading step 1"
+  },
+  "connectingServer": {
+    "message": "서버 연결 중...",
+    "description": "Loading step 2"
+  },
+  "generatingSummary": {
+    "message": "요약 생성 중...",
+    "description": "Loading step 3"
+  },
+  "preparingOutput": {
+    "message": "출력 준비 중...",
+    "description": "Loading step 4"
+  },
+  "ready": {
+    "message": "출력 준비 완료",
+    "description": "Loading step 5"
+  },
+  "analyzingPage": {
+    "message": "웹 페이지 분석 중...",
+    "description": "Auto loading step 1"
+  },
+  "extractingContent": {
+    "message": "콘텐츠 추출 중...",
+    "description": "Auto loading step 2"
+  },
+  "removingElements": {
+    "message": "불필요한 요소 제거 중...",
+    "description": "Auto loading step 3"
+  },
+  "interpretingContent": {
+    "message": "본문 내용 해석 중...",
+    "description": "Auto loading step 4"
+  },
+  "extractingKeyInfo": {
+    "message": "핵심 정보 추출 중...",
+    "description": "Auto loading step 5"
+  },
+  "refiningData": {
+    "message": "데이터 정제 중...",
+    "description": "Auto loading step 6"
+  },
+  "structuringContent": {
+    "message": "구조화 처리 중...",
+    "description": "Auto loading step 8"
+  },
+  "optimizingContent": {
+    "message": "내용 최적화 중...",
+    "description": "Auto loading step 9"
+  },
+  "finalReview": {
+    "message": "최종 검토 중...",
+    "description": "Auto loading step 10"
+  },
+  "qualityCheck": {
+    "message": "품질 확인 중...",
+    "description": "Auto loading step 11"
+  },
+  "pleaseWait": {
+    "message": "잠시만 기다려 주세요...",
+    "description": "Loading subtitle"
+  },
+  "pleaseEnterText": {
+    "message": "텍스트를 입력해주세요.",
+    "description": "Error: no text entered"
+  },
+  "summaryFailed": {
+    "message": "요약 실패: $MESSAGE$",
+    "description": "Summary failed error",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "pleaseEnterApiKey": {
+    "message": "Gemini API 키를 입력해주세요.",
+    "description": "Error: no API key"
+  },
+  "apiError": {
+    "message": "API 오류: $MESSAGE$",
+    "description": "API error",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidRequest": {
+    "message": "잘못된 요청입니다.",
+    "description": "Invalid request error"
+  },
+  "invalidResponseFormat": {
+    "message": "응답 형식이 올바르지 않습니다.",
+    "description": "Invalid response format error"
+  },
+  "unableToGetTabInfo": {
+    "message": "탭 정보를 가져올 수 없습니다.",
+    "description": "Error: unable to get tab"
+  },
+  "cannotExtractFromPage": {
+    "message": "이 페이지에서는 텍스트를 추출할 수 없습니다.",
+    "description": "Error: cannot extract text"
+  },
+  "unableToAccessPage": {
+    "message": "페이지에 접근할 수 없습니다. 페이지를 새로고침한 후 다시 시도해주세요.",
+    "description": "Error: unable to access page"
+  },
+  "noTextExtracted": {
+    "message": "추출된 텍스트가 없습니다.",
+    "description": "Error: no text extracted"
+  },
+  "noPreprocessedText": {
+    "message": "전처리된 텍스트가 없습니다.",
+    "description": "Error: no preprocessed text"
+  },
+  "autoSummaryFailed": {
+    "message": "자동 요약 실패: $MESSAGE$",
+    "description": "Auto summary failed error",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "selectionModeCannotUse": {
+    "message": "이 페이지에서는 선택 모드를 사용할 수 없습니다.",
+    "description": "Error: selection mode cannot use"
+  },
+  "clickToSelect": {
+    "message": "페이지에서 원하는 영역을 클릭하세요. 여러 개 선택 가능합니다. (ESC로 취소)",
+    "description": "Selection mode instruction"
+  },
+  "unableToStartSelection": {
+    "message": "선택 모드를 시작할 수 없습니다. 페이지를 새로고침한 후 다시 시도해주세요.",
+    "description": "Error: unable to start selection"
+  },
+  "selectionCleared": {
+    "message": "선택이 초기화되었습니다. 다시 선택하세요.",
+    "description": "Selection cleared message"
+  },
+  "clearFailed": {
+    "message": "초기화에 실패했습니다.",
+    "description": "Error: clear failed"
+  },
+  "textSelected": {
+    "message": "텍스트가 선택되었습니다$COUNT$. 요약하기 버튼을 클릭하세요.",
+    "description": "Text selected message",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "noTextSelected": {
+    "message": "선택된 텍스트가 없습니다.",
+    "description": "No text selected message"
+  },
+  "stopSelectionFailed": {
+    "message": "선택 모드 종료에 실패했습니다.",
+    "description": "Error: stop selection failed"
+  },
+  "textSelectedInMode": {
+    "message": "텍스트가 선택되었습니다$COUNT$. 선택 모드를 종료하세요.",
+    "description": "Text selected in selection mode",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selectionCancelled": {
+    "message": "선택이 취소되었습니다. 다시 선택하세요.",
+    "description": "Selection cancelled message"
+  },
+  "copyFailed": {
+    "message": "복사에 실패했습니다.",
+    "description": "Error: copy failed"
+  },
+  "selectedCount": {
+    "message": " ($1개 선택됨)",
+    "description": "Selected count text"
+  }
+}
+

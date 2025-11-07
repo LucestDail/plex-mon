@@ -1,0 +1,294 @@
+{
+  "extensionName": {
+    "message": "What's this",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Chrome extension to summarize web pages and text",
+    "description": "Extension description"
+  },
+  "autoDetect": {
+    "message": "Auto Detect",
+    "description": "Auto detect mode button"
+  },
+  "manualSelect": {
+    "message": "Manual Select",
+    "description": "Manual select mode button"
+  },
+  "manualInput": {
+    "message": "Manual Input",
+    "description": "Manual input mode button"
+  },
+  "autoModeDescription": {
+    "message": "Automatically extracts and summarizes the content of the current web page.",
+    "description": "Auto mode description"
+  },
+  "selectModeDescription": {
+    "message": "Click on the desired areas on the page to select them. You can select multiple areas. Click the summarize button after ending selection mode.",
+    "description": "Select mode description"
+  },
+  "summarize": {
+    "message": "Summarize",
+    "description": "Summarize button"
+  },
+  "startSelection": {
+    "message": "Start Selection",
+    "description": "Start selection button"
+  },
+  "stopSelection": {
+    "message": "Stop Selection",
+    "description": "Stop selection button"
+  },
+  "clear": {
+    "message": "Clear",
+    "description": "Clear button"
+  },
+  "textInputPlaceholder": {
+    "message": "Enter text to summarize...",
+    "description": "Text input placeholder"
+  },
+  "apiKeyLabel": {
+    "message": "Gemini API Key:",
+    "description": "API key label"
+  },
+  "apiKeyPlaceholder": {
+    "message": "Enter your Gemini API key",
+    "description": "API key placeholder"
+  },
+  "showHide": {
+    "message": "Show/Hide",
+    "description": "Show/Hide toggle"
+  },
+  "apiKeyHelp": {
+    "message": "You can get an API key from $LINK$.",
+    "description": "API key help text",
+    "placeholders": {
+      "link": {
+        "content": "$1",
+        "example": "Google AI Studio"
+      }
+    }
+  },
+  "summary": {
+    "message": "Summary",
+    "description": "Summary title"
+  },
+  "close": {
+    "message": "Close",
+    "description": "Close button"
+  },
+  "copy": {
+    "message": "Copy",
+    "description": "Copy button"
+  },
+  "copied": {
+    "message": "Copied",
+    "description": "Copied status"
+  },
+  "history": {
+    "message": "History",
+    "description": "History title"
+  },
+  "date": {
+    "message": "Date",
+    "description": "Date column header"
+  },
+  "summaryContent": {
+    "message": "Summary",
+    "description": "Summary column header"
+  },
+  "actions": {
+    "message": "Actions",
+    "description": "Actions column header"
+  },
+  "noHistory": {
+    "message": "No saved summary history.",
+    "description": "No history message"
+  },
+  "checkingData": {
+    "message": "Checking data...",
+    "description": "Loading step 1"
+  },
+  "connectingServer": {
+    "message": "Connecting to server...",
+    "description": "Loading step 2"
+  },
+  "generatingSummary": {
+    "message": "Generating summary...",
+    "description": "Loading step 3"
+  },
+  "preparingOutput": {
+    "message": "Preparing output...",
+    "description": "Loading step 4"
+  },
+  "ready": {
+    "message": "Ready",
+    "description": "Loading step 5"
+  },
+  "analyzingPage": {
+    "message": "Analyzing web page...",
+    "description": "Auto loading step 1"
+  },
+  "extractingContent": {
+    "message": "Extracting content...",
+    "description": "Auto loading step 2"
+  },
+  "removingElements": {
+    "message": "Removing unnecessary elements...",
+    "description": "Auto loading step 3"
+  },
+  "interpretingContent": {
+    "message": "Interpreting main content...",
+    "description": "Auto loading step 4"
+  },
+  "extractingKeyInfo": {
+    "message": "Extracting key information...",
+    "description": "Auto loading step 5"
+  },
+  "refiningData": {
+    "message": "Refining data...",
+    "description": "Auto loading step 6"
+  },
+  "structuringContent": {
+    "message": "Structuring content...",
+    "description": "Auto loading step 8"
+  },
+  "optimizingContent": {
+    "message": "Optimizing content...",
+    "description": "Auto loading step 9"
+  },
+  "finalReview": {
+    "message": "Final review...",
+    "description": "Auto loading step 10"
+  },
+  "qualityCheck": {
+    "message": "Quality check...",
+    "description": "Auto loading step 11"
+  },
+  "pleaseWait": {
+    "message": "Please wait...",
+    "description": "Loading subtitle"
+  },
+  "pleaseEnterText": {
+    "message": "Please enter text.",
+    "description": "Error: no text entered"
+  },
+  "summaryFailed": {
+    "message": "Summary failed: $MESSAGE$",
+    "description": "Summary failed error",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "pleaseEnterApiKey": {
+    "message": "Please enter your Gemini API key.",
+    "description": "Error: no API key"
+  },
+  "apiError": {
+    "message": "API Error: $MESSAGE$",
+    "description": "API error",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidRequest": {
+    "message": "Invalid request.",
+    "description": "Invalid request error"
+  },
+  "invalidResponseFormat": {
+    "message": "Invalid response format.",
+    "description": "Invalid response format error"
+  },
+  "unableToGetTabInfo": {
+    "message": "Unable to get tab information.",
+    "description": "Error: unable to get tab"
+  },
+  "cannotExtractFromPage": {
+    "message": "Text cannot be extracted from this page.",
+    "description": "Error: cannot extract text"
+  },
+  "unableToAccessPage": {
+    "message": "Unable to access the page. Please refresh the page and try again.",
+    "description": "Error: unable to access page"
+  },
+  "noTextExtracted": {
+    "message": "No text was extracted.",
+    "description": "Error: no text extracted"
+  },
+  "noPreprocessedText": {
+    "message": "No preprocessed text available.",
+    "description": "Error: no preprocessed text"
+  },
+  "autoSummaryFailed": {
+    "message": "Auto summary failed: $MESSAGE$",
+    "description": "Auto summary failed error",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "selectionModeCannotUse": {
+    "message": "Selection mode cannot be used on this page.",
+    "description": "Error: selection mode cannot use"
+  },
+  "clickToSelect": {
+    "message": "Click on the desired areas on the page. You can select multiple areas. (Press ESC to cancel)",
+    "description": "Selection mode instruction"
+  },
+  "unableToStartSelection": {
+    "message": "Unable to start selection mode. Please refresh the page and try again.",
+    "description": "Error: unable to start selection"
+  },
+  "selectionCleared": {
+    "message": "Selection cleared. Please select again.",
+    "description": "Selection cleared message"
+  },
+  "clearFailed": {
+    "message": "Failed to clear selection.",
+    "description": "Error: clear failed"
+  },
+  "textSelected": {
+    "message": "Text selected$COUNT$. Click the summarize button.",
+    "description": "Text selected message",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "noTextSelected": {
+    "message": "No text selected.",
+    "description": "No text selected message"
+  },
+  "stopSelectionFailed": {
+    "message": "Failed to stop selection mode.",
+    "description": "Error: stop selection failed"
+  },
+  "textSelectedInMode": {
+    "message": "Text selected$COUNT$. Please stop selection mode.",
+    "description": "Text selected in selection mode",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selectionCancelled": {
+    "message": "Selection cancelled. Please select again.",
+    "description": "Selection cancelled message"
+  },
+  "copyFailed": {
+    "message": "Copy failed.",
+    "description": "Error: copy failed"
+  },
+  "selectedCount": {
+    "message": " ($1 selected)",
+    "description": "Selected count text"
+  }
+}
+
