@@ -240,11 +240,11 @@ h1 {
 
 .help-text a {
   color: #9C27B0;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .help-text a:hover {
-  text-decoration: underline;
+  color: #7B1FA2;
 }
 
 .result {

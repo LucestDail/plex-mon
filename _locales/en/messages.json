@@ -60,7 +60,7 @@
     "description": "Show/Hide toggle"
   },
   "apiKeyHelp": {
-    "message": "You can get an API key from $LINK$.",
+    "message": "You can get an API key from $1.",
     "description": "API key help text",
     "placeholders": {
       "link": {

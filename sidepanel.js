@@ -36,7 +36,8 @@ function initI18n() {
         let message = chrome.i18n.getMessage(messageKey, args);
         // 링크 처리
         if (messageKey === 'apiKeyHelp' && args && args[0]) {
-          message = message.replace('$LINK$', `<a href="https://makersuite.google.com/app/apikey" target="_blank">${args[0]}</a>`);
+          // $1을 링크로 교체 (i18n API가 이미 $1을 args[0]로 교체했으므로, args[0]를 링크로 교체)
+          message = message.replace(args[0], `<a href="https://aistudio.google.com/api-keys" target="_blank" class="api-key-link">${args[0]}</a>`);
         }
         element.innerHTML = message;
       } catch (e) {
@@ -97,19 +98,25 @@ const selectMode = document.getElementById('selectMode');
 // 선택 모드 초기화 함수
 async function resetSelectionMode() {
   try {
-    // 선택 모드가 활성화되어 있는지 확인
-    if (stopSelectionBtn.style.display !== 'none') {
-      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-      
-      if (tab && tab.id) {
-        // 선택 모드 종료 및 선택 초기화
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    
+    if (tab && tab.id) {
+      // 선택 모드가 활성화되어 있으면 종료
+      if (stopSelectionBtn.style.display !== 'none') {
         try {
           await chrome.tabs.sendMessage(tab.id, { action: 'stopSelection' });
-          await chrome.tabs.sendMessage(tab.id, { action: 'clearSelection' });
         } catch (e) {
           // 탭이 닫혔거나 접근할 수 없는 경우 무시
-          console.log('Could not reset selection mode:', e);
+          console.log('Could not stop selection mode:', e);
         }
+      }
+      
+      // 선택 모드 상태와 관계없이 항상 선택 초기화
+      try {
+        await chrome.tabs.sendMessage(tab.id, { action: 'clearSelection' });
+      } catch (e) {
+        // 탭이 닫혔거나 접근할 수 없는 경우 무시
+        console.log('Could not clear selection:', e);
       }
     }
     
@@ -143,6 +150,15 @@ function switchMode(activeBtn, activeMode) {
   [manualMode, autoMode, selectMode].forEach(mode => mode.classList.remove('active'));
   activeBtn.classList.add('active');
   activeMode.classList.add('active');
+  
+  // 현재 모드를 storage에 저장
+  let modeName = 'auto';
+  if (activeMode === selectMode) {
+    modeName = 'select';
+  } else if (activeMode === manualMode) {
+    modeName = 'manual';
+  }
+  chrome.storage.local.set({ currentMode: modeName });
 }
 
 manualBtn.addEventListener('click', () => switchMode(manualBtn, manualMode));
@@ -1002,6 +1018,16 @@ async function initialize() {
   apiKeyInput.addEventListener('paste', () => {
     setTimeout(saveGeminiApiKey, 10);
   });
+  
+  // 초기 모드 저장 (기본값: auto)
+  const activeMode = document.querySelector('.mode-content.active');
+  if (activeMode === selectMode) {
+    chrome.storage.local.set({ currentMode: 'select' });
+  } else if (activeMode === manualMode) {
+    chrome.storage.local.set({ currentMode: 'manual' });
+  } else {
+    chrome.storage.local.set({ currentMode: 'auto' });
+  }
   
   // 창이 닫히거나 숨겨질 때 선택 모드 초기화
   window.addEventListener('beforeunload', () => {

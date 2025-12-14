@@ -60,7 +60,7 @@
     "description": "Show/Hide toggle"
   },
   "apiKeyHelp": {
-    "message": "API 키는 $LINK$에서 발급받을 수 있습니다.",
+    "message": "API 키는 $1에서 발급받을 수 있습니다.",
     "description": "API key help text",
     "placeholders": {
       "link": {

@@ -28,8 +28,13 @@ function clearAllSelections() {
   });
   selectedElements.clear();
   
+  // 모든 하이라이트 제거
+  document.querySelectorAll('.plex-selection-highlight').forEach(el => {
+    el.classList.remove('plex-selection-highlight');
+  });
+  
   // storage 초기화
-  chrome.storage.local.set({ textSelected: false, selectedText: '' });
+  chrome.storage.local.set({ textSelected: false, selectedText: '', selectedCount: 0 });
   
   // 메시지 전송
   chrome.runtime.sendMessage({ action: 'selectionsCleared' });
@@ -234,6 +239,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({ success: true });
   } else if (request.action === 'clearSelection') {
     clearAllSelections();
+    // 선택 모드가 활성화되어 있지 않으면 선택 모드도 종료
+    if (isSelectionMode) {
+      stopSelectionMode();
+    }
     sendResponse({ success: true });
   }
   return true;
