@@ -231,7 +231,10 @@ function handleEscape(e) {
 
 // 메시지 리스너
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === 'startSelection') {
+  if (request.action === 'ping') {
+    // 콘텐츠 스크립트 로드 확인용
+    sendResponse({ success: true });
+  } else if (request.action === 'startSelection') {
     startSelectionMode();
     sendResponse({ success: true });
   } else if (request.action === 'stopSelection') {

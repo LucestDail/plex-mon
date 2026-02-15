@@ -289,6 +289,47 @@
   "selectedCount": {
     "message": " ($1 selected)",
     "description": "Selected count text"
+  },
+  "inputTypeText": {
+    "message": "Text",
+    "description": "Text input type toggle"
+  },
+  "inputTypeLink": {
+    "message": "Link",
+    "description": "Link input type toggle"
+  },
+  "linkInputPlaceholder": {
+    "message": "Enter a web page URL to summarize...",
+    "description": "Link input placeholder"
+  },
+  "pleaseEnterLink": {
+    "message": "Please enter a URL.",
+    "description": "Error: no link entered"
+  },
+  "invalidUrl": {
+    "message": "Invalid URL format. (e.g., https://example.com)",
+    "description": "Error: invalid URL format"
+  },
+  "fetchingLink": {
+    "message": "Fetching link content...",
+    "description": "Loading: fetching link content"
+  },
+  "linkFetchFailed": {
+    "message": "Failed to access link: $MESSAGE$",
+    "description": "Error: link fetch failed",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "linkNoContent": {
+    "message": "Unable to extract content from the link.",
+    "description": "Error: no content from link"
+  },
+  "linkInputHelp": {
+    "message": "Fetches and summarizes the content from the entered link.",
+    "description": "Link input help text"
   }
 }
 

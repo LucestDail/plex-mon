@@ -47,12 +47,30 @@
     </div>
 
     <div id="manualMode" class="mode-content">
-      <textarea 
-        id="textInput" 
-        data-i18n-placeholder="textInputPlaceholder"
-        placeholder="Enter text to summarize..."
-        rows="8"
-      ></textarea>
+      <div class="input-type-toggle">
+        <button id="inputTypeText" class="input-type-btn active" data-i18n="inputTypeText">Text</button>
+        <button id="inputTypeLink" class="input-type-btn" data-i18n="inputTypeLink">Link</button>
+      </div>
+      <div id="textInputArea">
+        <textarea 
+          id="textInput" 
+          data-i18n-placeholder="textInputPlaceholder"
+          placeholder="Enter text to summarize..."
+          rows="8"
+        ></textarea>
+      </div>
+      <div id="linkInputArea" class="hidden">
+        <div class="link-input-wrapper">
+          <span class="link-input-icon">🔗</span>
+          <input 
+            type="url" 
+            id="linkInput" 
+            data-i18n-placeholder="linkInputPlaceholder"
+            placeholder="Enter a web page URL to summarize..."
+          >
+        </div>
+        <p class="link-help-text" data-i18n="linkInputHelp">입력한 링크의 내용을 가져와 요약합니다.</p>
+      </div>
       <button id="submitManual" class="submit-btn" data-i18n="summarize">Summarize</button>
     </div>
 

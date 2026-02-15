@@ -289,6 +289,47 @@
   "selectedCount": {
     "message": " ($1개 선택됨)",
     "description": "Selected count text"
+  },
+  "inputTypeText": {
+    "message": "텍스트",
+    "description": "Text input type toggle"
+  },
+  "inputTypeLink": {
+    "message": "링크",
+    "description": "Link input type toggle"
+  },
+  "linkInputPlaceholder": {
+    "message": "요약할 웹 페이지 URL을 입력하세요...",
+    "description": "Link input placeholder"
+  },
+  "pleaseEnterLink": {
+    "message": "URL을 입력해주세요.",
+    "description": "Error: no link entered"
+  },
+  "invalidUrl": {
+    "message": "올바른 URL 형식이 아닙니다. (예: https://example.com)",
+    "description": "Error: invalid URL format"
+  },
+  "fetchingLink": {
+    "message": "링크 내용 가져오는 중...",
+    "description": "Loading: fetching link content"
+  },
+  "linkFetchFailed": {
+    "message": "링크 접근 실패: $MESSAGE$",
+    "description": "Error: link fetch failed",
+    "placeholders": {
+      "message": {
+        "content": "$1"
+      }
+    }
+  },
+  "linkNoContent": {
+    "message": "링크에서 내용을 추출할 수 없습니다.",
+    "description": "Error: no content from link"
+  },
+  "linkInputHelp": {
+    "message": "입력한 링크의 내용을 가져와 요약합니다.",
+    "description": "Link input help text"
   }
 }
 

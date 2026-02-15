@@ -517,23 +517,147 @@ Please write a concise summary following the format above:`;
   return await callGeminiAPI(prompt);
 }
 
-// 직접 입력 모드
-document.getElementById('submitManual').addEventListener('click', async () => {
-  const textInput = document.getElementById('textInput');
-  const text = textInput.value.trim();
+// 직접 입력 모드 - 텍스트/링크 토글
+let manualInputType = 'text'; // 'text' 또는 'link'
 
-  if (!text) {
-    showError(i18n('pleaseEnterText'));
-    return;
+const inputTypeTextBtn = document.getElementById('inputTypeText');
+const inputTypeLinkBtn = document.getElementById('inputTypeLink');
+const textInputArea = document.getElementById('textInputArea');
+const linkInputArea = document.getElementById('linkInputArea');
+
+inputTypeTextBtn.addEventListener('click', () => {
+  manualInputType = 'text';
+  inputTypeTextBtn.classList.add('active');
+  inputTypeLinkBtn.classList.remove('active');
+  textInputArea.classList.remove('hidden');
+  linkInputArea.classList.add('hidden');
+});
+
+inputTypeLinkBtn.addEventListener('click', () => {
+  manualInputType = 'link';
+  inputTypeLinkBtn.classList.add('active');
+  inputTypeTextBtn.classList.remove('active');
+  linkInputArea.classList.remove('hidden');
+  textInputArea.classList.add('hidden');
+});
+
+// URL 유효성 검사
+function isValidUrl(string) {
+  try {
+    const url = new URL(string);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch (_) {
+    return false;
+  }
+}
+
+// 링크에서 텍스트 추출 (백그라운드에서 fetch)
+async function fetchAndExtractText(url) {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} ${response.statusText}`);
   }
 
-  showLoadingWithSteps();
-  try {
-    const summary = await requestSummary(text);
-    showResult(summary);
-  } catch (error) {
-    hideLoading();
-    showError(i18n('summaryFailed', [error.message]));
+  const html = await response.text();
+  
+  // DOMParser로 HTML 파싱 (메모리 내, 화면 변화 없음)
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  
+  // 불필요한 요소 제거
+  const elementsToRemove = doc.querySelectorAll(
+    'script, style, noscript, iframe, embed, object, nav, footer, header, aside, ' +
+    '[role="navigation"], [role="banner"], [role="contentinfo"], ' +
+    '.nav, .navbar, .footer, .header, .sidebar, .menu, .ad, .ads, .advertisement'
+  );
+  elementsToRemove.forEach(el => el.remove());
+  
+  // 텍스트 추출
+  let text = (doc.body?.innerText || doc.body?.textContent || '').trim();
+  
+  // 공백 정리
+  text = text
+    .replace(/\s+/g, ' ')
+    .replace(/\n\s*\n/g, '\n')
+    .trim();
+  
+  // 최대 길이 제한
+  const maxLength = 50000;
+  if (text.length > maxLength) {
+    text = text.substring(0, maxLength) + '...';
+  }
+  
+  return text;
+}
+
+// 직접 입력 모드 - 요약하기 버튼
+document.getElementById('submitManual').addEventListener('click', async () => {
+  if (manualInputType === 'text') {
+    // 텍스트 모드 (기존 로직)
+    const textInput = document.getElementById('textInput');
+    const text = textInput.value.trim();
+
+    if (!text) {
+      showError(i18n('pleaseEnterText'));
+      return;
+    }
+
+    showLoadingWithSteps();
+    try {
+      const summary = await requestSummary(text);
+      showResult(summary);
+    } catch (error) {
+      hideLoading();
+      showError(i18n('summaryFailed', [error.message]));
+    }
+  } else {
+    // 링크 모드
+    const linkInput = document.getElementById('linkInput');
+    const url = linkInput.value.trim();
+
+    if (!url) {
+      showError(i18n('pleaseEnterLink'));
+      return;
+    }
+
+    if (!isValidUrl(url)) {
+      showError(i18n('invalidUrl'));
+      return;
+    }
+
+    showLoadingWithSteps(true); // 자동 인식과 동일한 긴 로딩 단계 사용
+    try {
+      // 1단계: 링크에서 텍스트 가져오기
+      const extractedText = await fetchAndExtractText(url);
+
+      if (!extractedText || extractedText.length === 0) {
+        throw new Error(i18n('linkNoContent'));
+      }
+
+      // 2단계: 전처리 (광고, 네비게이션 등 제거)
+      const preprocessedText = await preprocessWebPageText(extractedText);
+
+      if (!preprocessedText || preprocessedText.trim().length === 0) {
+        throw new Error(i18n('noPreprocessedText'));
+      }
+
+      // 3단계: 요약
+      const summary = await requestSummary(preprocessedText);
+      showResult(summary);
+    } catch (error) {
+      hideLoading();
+      if (error.message.includes('HTTP') || error.message.includes('fetch') || error.message.includes('Failed')) {
+        showError(i18n('linkFetchFailed', [error.message]));
+      } else {
+        showError(i18n('summaryFailed', [error.message]));
+      }
+    }
   }
 });
 
@@ -840,6 +964,20 @@ const submitSelectedBtn = document.getElementById('submitSelected');
 const selectionStatus = document.getElementById('selectionStatus');
 let selectedText = '';
 
+// 콘텐츠 스크립트가 로드되었는지 확인하고, 없으면 주입
+async function ensureContentScripts(tabId) {
+  try {
+    // 먼저 콘텐츠 스크립트에 ping을 보내서 로드 여부 확인
+    await chrome.tabs.sendMessage(tabId, { action: 'ping' });
+  } catch (e) {
+    // 콘텐츠 스크립트가 없으면 주입
+    await chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      files: ['content.js', 'content-select.js']
+    });
+  }
+}
+
 // 선택 모드 시작
 startSelectionBtn.addEventListener('click', async () => {
   try {
@@ -858,6 +996,9 @@ startSelectionBtn.addEventListener('click', async () => {
       showError(i18n('selectionModeCannotUse'));
       return;
     }
+    
+    // 콘텐츠 스크립트 로드 확인 및 주입
+    await ensureContentScripts(tab.id);
     
     // 선택 모드 시작
     await chrome.tabs.sendMessage(tab.id, { action: 'startSelection' });
